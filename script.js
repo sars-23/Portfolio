@@ -1,518 +1,180 @@
-/**
- * Saransh Singh - Personal Portfolio JavaScript Engine
- * Dynamic features: Theme toggling, responsive menu, tab filtering, typing animation,
- * contact form validation, toast notifications, project & resume modals.
- */
+/* ==========================================================================
+   Saransh Singh — Personal Engineering Portfolio JavaScript
+   Lightweight, performant, and zero dependency.
+   ========================================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
-  // Initialize all interactive modules
-  initThemeToggle();
-  initMobileMenu();
-  initNavbarScroll();
-  initTypingEffect();
-  initSkillFilter();
-  initProjectFilter();
-  initContactForm();
-  initCopyButtons();
-  initBackToTop();
-  initModals();
-});
+  // 1. Theme Management (Dark / Light)
+  const themeToggle = document.getElementById('theme-toggle');
+  const htmlRoot = document.documentElement;
 
-/* --------------------------------------------------------------------------
-   1. DARK / LIGHT THEME TOGGLE
-   -------------------------------------------------------------------------- */
-function initThemeToggle() {
-  const themeBtn = document.getElementById('theme-toggle');
-  if (!themeBtn) return;
-  
-  // Check saved theme preference or system default
-  const savedTheme = localStorage.getItem('portfolio-theme') || 
-    (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-    
-  setTheme(savedTheme);
+  // Retrieve saved theme or default to dark
+  const savedTheme = localStorage.getItem('portfolio-theme') || 'dark';
+  htmlRoot.setAttribute('data-theme', savedTheme);
 
-  themeBtn.addEventListener('click', () => {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-  });
-}
-
-function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('portfolio-theme', theme);
-  
-  const themeIcon = document.querySelector('#theme-toggle i');
-  if (themeIcon) {
-    if (theme === 'light') {
-      themeIcon.className = 'fas fa-moon';
-      themeIcon.setAttribute('aria-label', 'Switch to Dark Theme');
-    } else {
-      themeIcon.className = 'fas fa-sun';
-      themeIcon.setAttribute('aria-label', 'Switch to Light Theme');
-    }
-  }
-}
-
-/* --------------------------------------------------------------------------
-   2. MOBILE NAVIGATION MENU
-   -------------------------------------------------------------------------- */
-function initMobileMenu() {
-  const toggleBtn = document.getElementById('mobile-toggle');
-  const navMenu = document.getElementById('nav-menu');
-  const navLinks = document.querySelectorAll('.nav-link');
-
-  if (!toggleBtn || !navMenu) return;
-
-  toggleBtn.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
-    const isExpanded = navMenu.classList.contains('active');
-    toggleBtn.setAttribute('aria-expanded', isExpanded);
-    toggleBtn.innerHTML = isExpanded ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
-  });
-
-  // Close menu when link is clicked
-  navLinks.forEach(link => {
-    link.addEventListener('click', () => {
-      navMenu.classList.remove('active');
-      toggleBtn.innerHTML = '<i class="fas fa-bars"></i>';
+  if (themeToggle) {
+    themeToggle.addEventListener('click', () => {
+      const currentTheme = htmlRoot.getAttribute('data-theme');
+      const nextTheme = currentTheme === 'dark' ? 'light' : 'dark';
+      htmlRoot.setAttribute('data-theme', nextTheme);
+      localStorage.setItem('portfolio-theme', nextTheme);
     });
-  });
-}
+  }
 
-/* --------------------------------------------------------------------------
-   3. NAVBAR SCROLL EFFECT & ACTIVE SECTION HIGHLIGHT
-   -------------------------------------------------------------------------- */
-function initNavbarScroll() {
-  const navbar = document.querySelector('.navbar');
-  const sections = document.querySelectorAll('section[id]');
-  const navLinks = document.querySelectorAll('.nav-link');
+  // 2. Mobile Menu Toggle
+  const mobileBtn = document.getElementById('mobile-menu-btn');
+  const navLinks = document.getElementById('nav-links');
 
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-      navbar?.classList.add('scrolled');
-    } else {
-      navbar?.classList.remove('scrolled');
-    }
-
-    // Highlight current section link
-    let currentSectionId = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 120;
-      const sectionHeight = section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        currentSectionId = section.getAttribute('id');
+  if (mobileBtn && navLinks) {
+    mobileBtn.addEventListener('click', () => {
+      const isOpen = navLinks.style.display === 'flex';
+      navLinks.style.display = isOpen ? 'none' : 'flex';
+      if (!isOpen) {
+        navLinks.style.flexDirection = 'column';
+        navLinks.style.position = 'absolute';
+        navLinks.style.top = '100%';
+        navLinks.style.left = '0';
+        navLinks.style.width = '100%';
+        navLinks.style.background = 'var(--bg-secondary)';
+        navLinks.style.padding = '1.5rem';
+        navLinks.style.borderBottom = '1px solid var(--border-color)';
+        navLinks.style.gap = '1.25rem';
       }
     });
 
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${currentSectionId}`) {
-        link.classList.add('active');
-      }
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   4. TYPING TEXT ANIMATION
-   -------------------------------------------------------------------------- */
-function initTypingEffect() {
-  const targetElement = document.getElementById('typing-text');
-  if (!targetElement) return;
-
-  const phrases = [
-    "Building Scalable Backends â€” One Clean API at a Time",
-    "GATE 2026 Qualifier (Top Percentile across 8 CS subjects)",
-    "LeetCode Knight (Top 5% Global Competitive Programmer)",
-    "Java 21, Spring Boot & Distributed Online Judge Developer"
-  ];
-
-  let phraseIdx = 0;
-  let charIdx = 0;
-  let isDeleting = false;
-  let typingSpeed = 70;
-
-  function type() {
-    const currentPhrase = phrases[phraseIdx];
-    
-    if (isDeleting) {
-      targetElement.textContent = currentPhrase.substring(0, charIdx - 1);
-      charIdx--;
-      typingSpeed = 35;
-    } else {
-      targetElement.textContent = currentPhrase.substring(0, charIdx + 1);
-      charIdx++;
-      typingSpeed = 70;
-    }
-
-    if (!isDeleting && charIdx === currentPhrase.length) {
-      isDeleting = true;
-      typingSpeed = 2200; // Pause at full line
-    } else if (isDeleting && charIdx === 0) {
-      isDeleting = false;
-      phraseIdx = (phraseIdx + 1) % phrases.length;
-      typingSpeed = 400; // Pause before typing next phrase
-    }
-
-    setTimeout(type, typingSpeed);
-  }
-
-  type();
-}
-
-/* --------------------------------------------------------------------------
-   5. SKILLS FILTERING
-   -------------------------------------------------------------------------- */
-function initSkillFilter() {
-  const filterBtns = document.querySelectorAll('.skills-filter .filter-btn');
-  const skillCards = document.querySelectorAll('.skill-category-card');
-
-  if (!filterBtns.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filterValue = btn.getAttribute('data-filter');
-
-      skillCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue) {
-          card.style.display = 'block';
-          card.style.animation = 'fadeIn 0.4s ease-out';
-        } else {
-          card.style.display = 'none';
+    // Close mobile nav when clicking a link
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        if (window.innerWidth <= 680) {
+          navLinks.style.display = 'none';
         }
       });
     });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   6. PROJECTS FILTERING
-   -------------------------------------------------------------------------- */
-function initProjectFilter() {
-  const filterBtns = document.querySelectorAll('.projects-filter .filter-btn');
-  const projectCards = document.querySelectorAll('.project-card');
-
-  if (!filterBtns.length) return;
-
-  filterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-      filterBtns.forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-
-      const filterValue = btn.getAttribute('data-filter');
-
-      projectCards.forEach(card => {
-        const category = card.getAttribute('data-category');
-        if (filterValue === 'all' || category === filterValue) {
-          card.style.display = 'flex';
-          card.style.animation = 'fadeIn 0.4s ease-out';
-        } else {
-          card.style.display = 'none';
-        }
-      });
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   7. CONTACT FORM VALIDATION & HANDLING
-   -------------------------------------------------------------------------- */
-function initContactForm() {
-  const form = document.getElementById('contact-form');
-  if (!form) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-
-    let isValid = true;
-    const name = document.getElementById('contact-name');
-    const email = document.getElementById('contact-email');
-    const subject = document.getElementById('contact-subject');
-    const message = document.getElementById('contact-message');
-
-    // Reset error states
-    document.querySelectorAll('.form-group').forEach(group => group.classList.remove('has-error'));
-
-    // Validate Name
-    if (!name.value.trim()) {
-      showError(name, 'Please enter your name');
-      isValid = false;
-    }
-
-    // Validate Email
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!email.value.trim() || !emailRegex.test(email.value.trim())) {
-      showError(email, 'Please enter a valid email address');
-      isValid = false;
-    }
-
-    // Validate Subject
-    if (!subject.value.trim()) {
-      showError(subject, 'Please enter a subject');
-      isValid = false;
-    }
-
-    // Validate Message
-    if (!message.value.trim() || message.value.trim().length < 10) {
-      showError(message, 'Message must be at least 10 characters long');
-      isValid = false;
-    }
-
-    if (isValid) {
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalText = submitBtn.innerHTML;
-      
-      submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
-
-      // Simulate network request
-      setTimeout(() => {
-        showToast('Message sent successfully! Saransh will reply shortly.', 'success');
-        form.reset();
-        submitBtn.disabled = false;
-        submitBtn.innerHTML = originalText;
-      }, 1200);
-    }
-  });
-}
-
-function showError(inputElement, message) {
-  const parentGroup = inputElement.closest('.form-group');
-  if (parentGroup) {
-    parentGroup.classList.add('has-error');
-    const errorSpan = parentGroup.querySelector('.form-error');
-    if (errorSpan) errorSpan.textContent = message;
   }
-}
 
-/* --------------------------------------------------------------------------
-   8. COPY TO CLIPBOARD BUTTONS
-   -------------------------------------------------------------------------- */
-function initCopyButtons() {
-  const copyElements = document.querySelectorAll('[data-copy]');
-
-  copyElements.forEach(el => {
-    el.addEventListener('click', () => {
-      const textToCopy = el.getAttribute('data-copy');
-      if (!textToCopy) return;
-
-      navigator.clipboard.writeText(textToCopy).then(() => {
-        showToast(`Copied "${textToCopy}" to clipboard!`, 'info');
-      }).catch(err => {
-        console.error('Failed to copy: ', err);
-      });
-    });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   9. BACK TO TOP BUTTON
-   -------------------------------------------------------------------------- */
-function initBackToTop() {
-  const topBtn = document.getElementById('back-to-top');
-  if (!topBtn) return;
-
-  window.addEventListener('scroll', () => {
-    if (window.scrollY > 400) {
-      topBtn.classList.add('visible');
-    } else {
-      topBtn.classList.remove('visible');
-    }
-  });
-
-  topBtn.addEventListener('click', () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  });
-}
-
-/* --------------------------------------------------------------------------
-   10. MODAL POPUPS FOR PROJECT & RESUME
-   -------------------------------------------------------------------------- */
-
-const projectDetailsData = {
-  'apricorn': {
-    title: 'Project Apricorn â€” Where Ideas Compile',
-    subtitle: 'Java 21, Spring Boot, PostgreSQL, Docker, Spring Security, Flyway, Testcontainers',
-    date: 'June 2026',
-    description: 'Project Apricorn is an enterprise-grade, Docker-isolated online code execution judge platform built with high performance and microservice security in mind.',
-    features: [
-      'Built a Docker-isolated online judge with asynchronous execution, resource limits, and automated verdict generation for submitted Java solutions.',
-      'Designed a metadata-driven function-based judging engine that generates execution harnesses, processes structured test cases, and performs typed return-value validation.',
-      'Developed Solution Journey, Coding Insights, and Growth Analytics for attempt tracking, failure-pattern analysis, performance improvement, and personalized recommendations.',
-      'Implemented JWT-based authentication, Flyway-managed PostgreSQL persistence, Testcontainers integration testing, and 110+ automated tests across service, MVC, security, and judge layers.'
-    ],
-    github: 'https://github.com/sars-23/Project-Apricorn_1'
-  },
-  'arbor': {
-    title: 'Arbor â€” Custom Interpreted Programming Language',
-    subtitle: 'Java, Maven, JUnit 5, Compiler Design & AST Analysis',
-    date: 'March 2026',
-    description: 'Arbor is a full-featured programming language interpreter written in Java, featuring a custom lexer, recursive descent parser, AST tree walker, and scope environment manager.',
-    features: [
-      'Engineered a fully functional interpreted language in Java featuring a hand-written Lexer, Recursive Descent Parser, and AST-based Tree-Walk Interpreter supporting variables, functions, closures, and control flow.',
-      'Implemented lexical scoping via a nested Environment class, Visitor pattern across 7+ AST node types, and structured error handling (Lexical, Parse, Runtime) with line-level diagnostics.',
-      'Delivered a CLI (arbor run) and interactive REPL with 80%+ unit test coverage using JUnit 5 across Lexer, Parser, Interpreter, and scope resolution modules.'
-    ],
-    github: 'https://github.com/sars-23/Arbor_0.5'
-  },
-  'swing-crud': {
-    title: 'Java Contact Management System',
-    subtitle: 'Java SE, Swing GUI, HashMap Data Structure, OOP, Git',
-    date: 'Sept 2025',
-    description: 'High-speed desktop CRUD application optimizing contact lookups to O(1) time complexity with an event-driven Swing interface.',
-    features: [
-      'Built a desktop CRUD application handling 500+ contact records with an event-driven Java Swing GUI, reducing interaction steps by 40% compared to CLI-based alternatives.',
-      'Leveraged HashMap data structures for O(1) average-time retrieval across all 4 CRUD operations â€” up to 10x faster than linear search alternatives on large datasets.',
-      'Designed 6+ modular OOP classes with <50ms UI refresh via DefaultTableModel and input validation covering 10+ edge cases, ensuring robustness and maintainability.'
-    ],
-    github: 'https://github.com/sars-23/Java_Contact_Management_System'
-  },
-    'drowsiness': {
-      title: 'Real-Time Drowsiness Detection',
-      subtitle: 'Python 3.11, OpenCV, MediaPipe Face Mesh, Computer Vision',
-      date: 'June 2025',
-      description: 'Experimental real-time computer-vision prototype using webcam video and 468 MediaPipe facial mesh landmarks to compute Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR).',
-      features: [
-        'Calculates Eye Aspect Ratio (EAR) from six facial landmarks around each eye and computes Mouth Aspect Ratio (MAR) from six mouth landmarks.',
-        'Renders on-screen visual warning messages (DROWSY! and YAWNING!) when values cross configured sensitivity thresholds.',
-        'Modular architecture separating geometric calculation logic (geometry.py) from camera capture and GUI display loops.',
-        'Configurable runtime CLI options for camera index, EAR threshold, and MAR threshold with unit test verification.'
-      ],
-      github: 'https://github.com/sars-23/real-time-drowsiness-detection'
-    }
-};
-
-function initModals() {
+  // 3. Project Detail Modals
   const modalOverlay = document.getElementById('modal-overlay');
-  const modalCloseBtn = document.getElementById('modal-close');
   const modalBody = document.getElementById('modal-body');
+  const modalClose = document.getElementById('modal-close');
 
-  if (!modalOverlay || !modalBody) return;
+  const projectData = {
+    'project-apricorn': {
+      title: 'Project Apricorn — Architecture & Technical Specifications',
+      subtitle: 'Online Code Judge & Practice Platform (Java / Spring Boot / Docker)',
+      body: `
+        <div style="line-height: 1.7; font-size: 0.95rem; color: var(--text-secondary);">
+          <div style="background: var(--bg-secondary); padding: 1rem 1.25rem; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+            <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">
+              <i class="fas fa-lock" style="color: var(--accent-amber); margin-right: 0.5rem;"></i> Active Development Repository (Private)
+            </p>
+            <p style="font-size: 0.88rem; margin: 0;">This codebase is currently in active private development. Architecture specifications, API contracts, and schema designs are detailed below. Code review access is available upon request.</p>
+          </div>
 
-  // Open modal buttons
-  document.querySelectorAll('[data-modal-target]').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.preventDefault();
-      const target = btn.getAttribute('data-modal-target');
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">1. Sandboxed Execution Pipeline</h4>
+          <p>Student and test submissions are processed through ephemeral Docker container runners. Each execution instance is constrained by:</p>
+          <ul style="padding-left: 1.5rem; margin: 0.5rem 0;">
+            <li><strong>Memory Caps:</strong> Hard limit at 256MB per process using cgroup constraints.</li>
+            <li><strong>CPU Quota:</strong> 0.5 vCPU allocation to avoid CPU starvation attacks.</li>
+            <li><strong>Execution Timeout:</strong> 2.0s wall-clock kill signal to intercept infinite loops.</li>
+            <li><strong>Network Isolation:</strong> Fully disabled egress to prevent unauthorized external requests.</li>
+          </ul>
 
-      if (target === 'resume') {
-        renderResumeModal(modalBody);
-      } else if (projectDetailsData[target]) {
-        renderProjectModal(modalBody, projectDetailsData[target]);
-      }
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">2. Backend & Data Modeling</h4>
+          <p>Built with Spring Boot 3 on Java 21 LTS with PostgreSQL persistence. Features stateless JWT token authentication, Flyway migration scripts, and an asynchronous queueing abstraction to evaluate submissions without blocking HTTP handler threads.</p>
 
-      modalOverlay.classList.add('active');
-      document.body.style.overflow = 'hidden';
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">3. Telemetry & User Growth</h4>
+          <p>Unlike traditional binary pass/fail platforms, Apricorn logs attempt progression timelines, memory consumption trends, and common compile-time errors to help developers understand where their algorithmic mental model broke down.</p>
+
+          <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="mailto:saransh.9822@gmail.com?subject=Code%20Review%20Access%20Request%3A%20Project%20Apricorn" class="btn btn-primary btn-sm">
+              <i class="fas fa-envelope"></i> Request Code Access
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('modal-overlay').classList.remove('open')">
+              Close
+            </button>
+          </div>
+        </div>
+      `
+    },
+    'project-arbor': {
+      title: 'Arbor — Programming Language Interpreter Design',
+      subtitle: 'Custom Dynamically-Typed Tree-Walk Interpreter (Java)',
+      body: `
+        <div style="line-height: 1.7; font-size: 0.95rem; color: var(--text-secondary);">
+          <div style="background: var(--bg-secondary); padding: 1rem 1.25rem; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+            <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">
+              <i class="fas fa-lock" style="color: var(--accent-amber); margin-right: 0.5rem;"></i> Academic Side Project (Private)
+            </p>
+            <p style="font-size: 0.88rem; margin: 0;">Arbor is an educational compiler engineering project built to understand language implementation from first principles. Complete architectural stages are outlined below.</p>
+          </div>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">1. Handwritten Lexical Scanner</h4>
+          <p>Converts raw source code text into a stream of strongly typed tokens (keywords, identifiers, literals, operators). Tracks precise line and column metadata for expressive compile-time error diagnostics.</p>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">2. Recursive-Descent Parser & AST</h4>
+          <p>Implements grammar rules to parse expressions and statements into a structured Abstract Syntax Tree (AST). Operator precedence is resolved using Pratt parsing techniques.</p>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">3. Tree-Walk Interpreter (Visitor Pattern)</h4>
+          <p>Executes AST nodes directly via the Gang of Four Visitor pattern. Decouples AST node data structures from execution logic (e.g. arithmetic, control flow branching, loop execution).</p>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">4. Lexical Scoping & Closures</h4>
+          <p>Maintains runtime environments in a linked ancestor chain. Functions capture their enclosing lexical environment upon definition, enabling full first-class closures and stateful callbacks.</p>
+
+          <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="mailto:saransh.9822@gmail.com?subject=Code%20Review%20Access%20Request%3A%20Arbor%20Interpreter" class="btn btn-primary btn-sm">
+              <i class="fas fa-envelope"></i> Request Code Access
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('modal-overlay').classList.remove('open')">
+              Close
+            </button>
+          </div>
+        </div>
+      `
+    }
+  };
+
+  function openModal(key) {
+    const data = projectData[key];
+    if (!data || !modalBody || !modalOverlay) return;
+
+    modalBody.innerHTML = `
+      <h3 style="font-size: 1.4rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.25rem;">${data.title}</h3>
+      <p style="font-size: 0.9rem; color: var(--accent); margin-bottom: 1.5rem; font-weight: 600;">${data.subtitle}</p>
+      ${data.body}
+    `;
+
+    modalOverlay.classList.add('open');
+    modalOverlay.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    if (!modalOverlay) return;
+    modalOverlay.classList.remove('open');
+    modalOverlay.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('[data-modal-target]').forEach(button => {
+    button.addEventListener('click', () => {
+      const target = button.getAttribute('data-modal-target');
+      openModal(target);
     });
   });
 
-  // Close modal event
-  modalCloseBtn?.addEventListener('click', closeModal);
-  modalOverlay.addEventListener('click', (e) => {
-    if (e.target === modalOverlay) closeModal();
-  });
+  if (modalClose) {
+    modalClose.addEventListener('click', closeModal);
+  }
+
+  if (modalOverlay) {
+    modalOverlay.addEventListener('click', (e) => {
+      if (e.target === modalOverlay) closeModal();
+    });
+  }
 
   document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && modalOverlay.classList.contains('active')) {
+    if (e.key === 'Escape' && modalOverlay && modalOverlay.classList.contains('open')) {
       closeModal();
     }
   });
-
-  function closeModal() {
-    modalOverlay.classList.remove('active');
-    document.body.style.overflow = '';
-  }
-}
-
-function renderProjectModal(container, data) {
-  const actionButton = data.isPrivate
-    ? `<div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); color: #fbbf24; font-size: 0.9rem;">
-        <i class="fas fa-lock" style="font-size: 1.1rem;"></i>
-        <span><strong>Private Repository:</strong> Source code is currently hosted in a private repository. Architecture, data models, and specifications are documented above.</span>
-      </div>`
-    : `<a href="${data.github}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
-        <i class="fab fa-github"></i> View Public GitHub Repository
-      </a>`;
-
-  container.innerHTML = `
-    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">${data.title}</h3>
-    <p style="color: var(--accent-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem;">${data.subtitle} (${data.date})</p>
-    <p style="color: var(--text-secondary); line-height: 1.7; margin-bottom: 1.5rem;">${data.description}</p>
-    <h4 style="font-size: 1.1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 0.75rem;">Key Architecture & Technical Accomplishments:</h4>
-    <ul style="padding-left: 1.25rem; list-style: disc; color: var(--text-secondary); line-height: 1.7; margin-bottom: 2rem;">
-      ${data.features.map(f => `<li style="margin-bottom: 0.6rem;">${f}</li>`).join('')}
-    </ul>
-    <div style="display: flex; gap: 1rem;">
-      ${actionButton}
-    </div>
-  `;
-}
-
-function renderResumeModal(container) {
-  container.innerHTML = `
-    <div style="display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
-      <img src="assets/images/saransh.jpg" alt="Saransh Singh" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid var(--accent-secondary); box-shadow: var(--shadow-sm);">
-      <div>
-        <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem;">Saransh Singh</h3>
-        <p style="color: var(--accent-primary); font-weight: 600; font-size: 0.95rem;">B.Tech Computer Science &amp; Engineering &bull; JECRC University (2023–2027)</p>
-      </div>
-    </div>
-    
-    <div style="background: var(--bg-tertiary); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
-      <p><strong>Engineering Focus:</strong> Java 21 LTS, Spring Boot, Compiler &amp; Interpreter Architecture, Docker Sandbox Isolation, Relational Database Modeling (PostgreSQL).</p>
-      <p style="margin-top:0.75rem;"><strong>Core Projects Built:</strong></p>
-      <ul style="padding-left: 1.25rem; margin-top: 0.35rem; list-style: disc;">
-        <li><strong>Arbor Language:</strong> Complete tree-walk interpreter in Java with handwritten lexer, recursive-descent parser, AST visitor pattern, and lexical closures.</li>
-        <li><strong>Project Apricorn:</strong> Docker-isolated online code judge with asynchronous queueing, attempt progression timelines, and deterministic insights.</li>
-        <li><strong>Java Contact Manager:</strong> Desktop Swing CRUD tool using LinkedHashMap for fast in-memory indexing.</li>
-        <li><strong>Drowsiness Detection:</strong> Real-time computer vision prototype using MediaPipe facial mesh landmarks and OpenCV.</li>
-      </ul>
-      <p style="margin-top:0.75rem;"><strong>Academic Foundation:</strong> Data Structures &amp; Algorithms, Operating Systems, Database Management Systems, Compiler Design, Computer Networks.</p>
-    </div>
-
-    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <a href="https://github.com/sars-23" target="_blank" class="btn btn-primary" style="text-decoration:none;">
-        <i class="fab fa-github"></i> View GitHub Profile
-      </a>
-      <a href="mailto:saransh.9822@gmail.com" class="btn btn-secondary" style="text-decoration:none;">
-        <i class="fas fa-envelope"></i> Send Email
-      </a>
-    </div>
-  `;
-}
-
-/* --------------------------------------------------------------------------
-   11. TOAST NOTIFICATION UTILITY
-   -------------------------------------------------------------------------- */
-function showToast(message, type = 'info') {
-  let toastContainer = document.querySelector('.toast-container');
-  if (!toastContainer) {
-    toastContainer = document.createElement('div');
-    toastContainer.className = 'toast-container';
-    document.body.appendChild(toastContainer);
-  }
-
-  const toast = document.createElement('div');
-  toast.className = `toast toast-${type}`;
-  
-  const iconMap = {
-    info: 'fa-info-circle',
-    success: 'fa-check-circle',
-    warning: 'fa-exclamation-triangle'
-  };
-
-  toast.innerHTML = `<i class="fas ${iconMap[type] || 'fa-info-circle'}"></i> <span>${message}</span>`;
-  toastContainer.appendChild(toast);
-
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    toast.style.transform = 'translateX(-100%)';
-    toast.style.transition = 'all 0.3s ease';
-    setTimeout(() => toast.remove(), 300);
-  }, 3500);
-}
+});
