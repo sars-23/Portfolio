@@ -430,6 +430,15 @@ function initModals() {
 }
 
 function renderProjectModal(container, data) {
+  const actionButton = data.isPrivate
+    ? `<div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); color: #fbbf24; font-size: 0.9rem;">
+        <i class="fas fa-lock" style="font-size: 1.1rem;"></i>
+        <span><strong>Private Repository:</strong> Source code is currently hosted in a private repository. Architecture, data models, and specifications are documented above.</span>
+      </div>`
+    : `<a href="${data.github}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+        <i class="fab fa-github"></i> View Public GitHub Repository
+      </a>`;
+
   container.innerHTML = `
     <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">${data.title}</h3>
     <p style="color: var(--accent-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem;">${data.subtitle} (${data.date})</p>
@@ -439,9 +448,7 @@ function renderProjectModal(container, data) {
       ${data.features.map(f => `<li style="margin-bottom: 0.6rem;">${f}</li>`).join('')}
     </ul>
     <div style="display: flex; gap: 1rem;">
-      <a href="${data.github}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
-        <i class="fab fa-github"></i> View GitHub Repository
-      </a>
+      ${actionButton}
     </div>
   `;
 }
