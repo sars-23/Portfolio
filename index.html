@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Saransh Singh - Software Backend Engineer, GATE 2026 Qualifier & CS Undergraduate. Portfolio showcasing Spring Boot APIs, Compiler Architecture, PostgreSQL, and Docker Judges.">
+  <meta name="keywords" content="Saransh Singh, Backend Engineer, Java Developer, Spring Boot, Compiler Design, GATE 2026, Software Engineer Portfolio">
+  <meta name="author" content="Saransh Singh">
+  <title>Saransh Singh | Software Backend Engineer & CS Undergraduate</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+  
+  <!-- Google Fonts: Plus Jakarta Sans & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- FontAwesome 6 Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==========================================================================
+       HEADER & NAVIGATION BAR
+       ========================================================================== -->
+  <header class="navbar" id="navbar">
+    <div class="container nav-container">
+      <a href="#home" class="nav-logo" aria-label="Saransh Singh Home">
+        <span class="code-tag">&lt;</span>Saransh.dev<span class="code-tag"> /&gt;</span>
+      </a>
+
+      <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle Theme">
+          <i class="fas fa-sun"></i>
+        </button>
+        <button class="btn btn-primary btn-sm" data-modal-target="resume">
+          <i class="fas fa-file-alt"></i> Resume
+        </button>
+        <button id="mobile-toggle" class="mobile-nav-toggle" aria-label="Open Mobile Menu" aria-expanded="false">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================================================
+       MAIN CONTENT CONTAINER
+       ========================================================================== -->
+  <main>
+
+    <!-- --------------------------------------------------------------------------
+         1. HOME (HERO SECTION)
+         -------------------------------------------------------------------------- -->
+    <section class="hero-section" id="home">
+      <div class="hero-background-effects">
+        <div class="blob-1"></div>
+        <div class="blob-2"></div>
+      </div>
+      
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="status-badge">
+            <span class="pulse-dot"></span>
+            <span>Available for Backend & Software Engineering Roles</span>
+          </div>
+
+          <h1 class="hero-title">
+            Hi, I'm <span class="gradient-text">Saransh Singh</span>
+          </h1>
+
+          <h2 class="hero-subtitle">
+            <span id="typing-text" class="typed-text"></span>
+          </h2>
+
+          <p class="hero-description">
+            GATE 2026 qualifier & CS undergraduate specialized in engineering production-ready 
+            Java/Spring Boot APIs, Docker-isolated online judges, and custom compiler architectures with high code coverage and clean design patterns.
+          </p>
+
+          <div class="hero-badges">
+            <span class="badge-pill"><i class="fas fa-award"></i> GATE 2026 Qualifier</span>
+            <span class="badge-pill"><i class="fas fa-chess-knight"></i> LeetCode Knight (Top 5%)</span>
+            <span class="badge-pill"><i class="fas fa-graduation-cap"></i> CGPA: 8.21 / 10</span>
+          </div>
+
+          <div class="hero-cta-group">
+            <a href="#projects" class="btn btn-primary">
+              <i class="fas fa-code-branch"></i> View Projects
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              <i class="fas fa-paper-plane"></i> Get In Touch
+            </a>
+            <button class="btn btn-outline" data-modal-target="resume">
+              <i class="fas fa-download"></i> View Resume
+            </button>
+          </div>
+        </div>
+
+        <div class="hero-visual">
+          <div class="avatar-wrapper">
+            <img src="assets/images/avatar.png" alt="Saransh Singh - Backend Developer Avatar" class="avatar-img">
+          </div>
+          
+          <div class="floating-tech-card card-1">
+            <i class="fab fa-java" style="color: #f89820; font-size: 1.4rem;"></i>
+            <div>
+              <div>Java 21 & Spring Boot</div>
+              <small style="color: var(--text-muted); font-weight:400;">Backend Core</small>
+            </div>
+          </div>
+
+          <div class="floating-tech-card card-2">
+            <i class="fab fa-docker" style="color: #2496ed; font-size: 1.4rem;"></i>
+            <div>
+              <div>Docker Execution Engine</div>
+              <small style="color: var(--text-muted); font-weight:400;">Online Judge System</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------
+         2. ABOUT SECTION
+         -------------------------------------------------------------------------- -->
+    <section class="section-padding" id="about">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">About Me</span>
+          <h2 class="section-title">Architecting Backend Systems & High Performance APIs</h2>
+          <p class="section-description">
+            Passionate about backend performance, compiler design, algorithms, and clean software architecture.
+          </p>
+        </div>
+
+        <div class="about-grid">
+          <div class="about-text">
+            <p>
+              I am a Computer Science Undergraduate at JECRC University, Jaipur (CGPA 8.21/10) with 
+              <strong>1+ year of backend engineering experience</strong> building robust, production-grade 
+              Java/Spring Boot microservices, MySQL/PostgreSQL persistence layers, and RESTful architectures.
+            </p>
+            <p>
+              Having qualified <strong>GATE 2026</strong> in the top percentile across 8 core Computer Science subjects 
+              (Algorithms, OS, DBMS, Computer Networks, Discrete Math), I bridge deep theoretical computer science fundamentals 
+              with practical, test-driven application development.
+            </p>
+
+            <div class="about-highlight-box">
+              <h4><i class="fas fa-bullseye" style="color: var(--accent-primary);"></i> Engineering Philosophy</h4>
+              <p style="font-size: 0.95rem; margin-bottom: 0;">
+                Focused on writing clean, modular code that scales effortlessly. Experienced with Docker containerization, 
+                Testcontainers automated testing (110+ unit/integration tests), AST interpreters, and GCP Cloud infrastructure.
+              </p>
+            </div>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-number">8.21</div>
+              <div class="stat-label">University CGPA (2023 - 2027)</div>
+            </div>
+            
+            <div class="stat-card">
+              <div class="stat-number">Top 5%</div>
+              <div class="stat-label">LeetCode Knight Programmer</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">3+</div>
+              <div class="stat-label">Core Production Systems Shipped</div>
+            </div>
+
+            <div class="stat-card">
+              <div class="stat-number">110+</div>
+              <div class="stat-label">Automated Test Suites Executed</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------
+         3. SKILLS SECTION
+         -------------------------------------------------------------------------- -->
+    <section class="section-padding" id="skills" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Technical Competencies</span>
+          <h2 class="section-title">Skills & Expertise</h2>
+          <p class="section-description">
+            A comprehensive overview of my technical stack, frameworks, tools, and developer practices.
+          </p>
+        </div>
+
+        <div class="skills-filter">
+          <button class="filter-btn active" data-filter="all">All Skills</button>
+          <button class="filter-btn" data-filter="languages">Languages</button>
+          <button class="filter-btn" data-filter="frameworks">Frameworks & Tools</button>
+          <button class="filter-btn" data-filter="cloud">Databases & Cloud</button>
+          <button class="filter-btn" data-filter="practices">Dev Practices & CS</button>
+        </div>
+
+        <div class="skills-grid">
+
+          <!-- Card 1: Languages -->
+          <div class="skill-category-card" data-category="languages">
+            <div class="category-header">
+              <div class="category-icon"><i class="fas fa-code"></i></div>
+              <h3 class="category-title">Programming Languages</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fab fa-java" style="color:#f89820;"></i> Java (Core & Advanced)</span>
+                  <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+              </div>
+              
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-terminal" style="color:#00599C;"></i> C++</span>
+                  <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-database" style="color:#336791;"></i> SQL</span>
+                  <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+              </div>
+            </div>
+            <div class="skill-tags-cloud" style="margin-top: 1.5rem;">
+              <span class="skill-tag">Java 21</span>
+              <span class="skill-tag">OOP</span>
+              <span class="skill-tag">Multithreading</span>
+              <span class="skill-tag">Data Structures</span>
+            </div>
+          </div>
+
+          <!-- Card 2: Frameworks & Tools -->
+          <div class="skill-category-card" data-category="frameworks">
+            <div class="category-header">
+              <div class="category-icon"><i class="fas fa-cubes"></i></div>
+              <h3 class="category-title">Frameworks & Tools</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-leaf" style="color:#6DB33F;"></i> Spring Boot / Spring MVC</span>
+                  <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-shield-alt" style="color:#6DB33F;"></i> Spring Security & JWT</span>
+                  <span class="skill-level">85%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 85%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-plug" style="color:#3b82f6;"></i> RESTful APIs & Maven</span>
+                  <span class="skill-level">92%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+              </div>
+            </div>
+            <div class="skill-tags-cloud" style="margin-top: 1.5rem;">
+              <span class="skill-tag">Hibernate ORM</span>
+              <span class="skill-tag">Postman</span>
+              <span class="skill-tag">OpenCV</span>
+              <span class="skill-tag">Java Swing</span>
+            </div>
+          </div>
+
+          <!-- Card 3: Databases & Cloud -->
+          <div class="skill-category-card" data-category="cloud">
+            <div class="category-header">
+              <div class="category-icon"><i class="fas fa-server"></i></div>
+              <h3 class="category-title">Databases & Cloud</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-database" style="color:#336791;"></i> PostgreSQL & MySQL</span>
+                  <span class="skill-level">90%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 90%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fab fa-google" style="color:#4285F4;"></i> Google Cloud Platform (GCP)</span>
+                  <span class="skill-level">80%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 80%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-bolt" style="color:#f59e0b;"></i> JDBC & Query Optimization</span>
+                  <span class="skill-level">88%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+              </div>
+            </div>
+            <div class="skill-tags-cloud" style="margin-top: 1.5rem;">
+              <span class="skill-tag">GCP Certified</span>
+              <span class="skill-tag">Flyway DB</span>
+              <span class="skill-tag">Indexing</span>
+              <span class="skill-tag">ACID Transactions</span>
+            </div>
+          </div>
+
+          <!-- Card 4: Dev Practices & CS Fundamentals -->
+          <div class="skill-category-card" data-category="practices">
+            <div class="category-header">
+              <div class="category-icon"><i class="fas fa-cogs"></i></div>
+              <h3 class="category-title">Dev Practices & CS Core</h3>
+            </div>
+            <div class="skills-list">
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fab fa-git-alt" style="color:#F05032;"></i> Git/GitHub & Linux</span>
+                  <span class="skill-level">92%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 92%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fab fa-docker" style="color:#2496ed;"></i> Docker & Testcontainers</span>
+                  <span class="skill-level">88%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 88%;"></div></div>
+              </div>
+
+              <div class="skill-item">
+                <div class="skill-info">
+                  <span class="skill-name"><i class="fas fa-microchip"></i> DSA, OS, DBMS & Networks</span>
+                  <span class="skill-level">95%</span>
+                </div>
+                <div class="skill-bar-bg"><div class="skill-bar-fill" style="width: 95%;"></div></div>
+              </div>
+            </div>
+            <div class="skill-tags-cloud" style="margin-top: 1.5rem;">
+              <span class="skill-tag">CI/CD</span>
+              <span class="skill-tag">Agile/Scrum</span>
+              <span class="skill-tag">JUnit 5</span>
+              <span class="skill-tag">IntelliJ IDEA</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------
+         4. PROJECTS SECTION
+         -------------------------------------------------------------------------- */
+    <section class="section-padding" id="projects">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Featured Work</span>
+          <h2 class="section-title">Backend & Systems Projects</h2>
+          <p class="section-description">
+            Production-grade systems ranging from containerized online judges to compiler interpreters.
+          </p>
+        </div>
+
+        <div class="projects-filter skills-filter">
+          <button class="filter-btn active" data-filter="all">All Projects</button>
+          <button class="filter-btn" data-filter="systems">Backend & Online Judge</button>
+          <button class="filter-btn" data-filter="compiler">Compiler Architecture</button>
+          <button class="filter-btn" data-filter="desktop">Desktop Software</button>
+          <button class="filter-btn" data-filter="vision">Computer Vision</button>
+        </div>
+
+        <div class="projects-grid">
+
+          <!-- Project 1: Project Apricorn -->
+          <article class="project-card" data-category="systems">
+            <div class="project-banner">
+              <img src="assets/images/project-apricorn.png" alt="Project Apricorn Dashboard">
+              <span class="project-date">June 2026</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Project Apricorn — Developer Growth Platform</h3>
+              <div class="project-subtitle">Docker-Isolated Online Judge & Analytics Platform</div>
+              <p class="project-description">
+                Built an enterprise online code judging engine with asynchronous containerized execution, resource limits, automated verdict generation, and personalized problem recommendations.
+              </p>
+              <ul class="project-highlights">
+                <li>Metadata-driven function harness generator & typed output validation</li>
+                <li>Solution Journey & Growth Analytics tracking failure patterns</li>
+                <li>JWT Authentication & Flyway PostgreSQL persistence with 110+ automated test suites</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Java 21</span>
+                <span class="tech-badge">Spring Boot</span>
+                <span class="tech-badge">Docker</span>
+                <span class="tech-badge">PostgreSQL</span>
+                <span class="tech-badge">Testcontainers</span>
+                <span class="tech-badge">Spring Security</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm" data-modal-target="apricorn">
+                  <i class="fas fa-info-circle"></i> Details
+                </button>
+                <div class="project-links">
+                  <a href="https://github.com/sars-23/Project-Apricorn_1" target="_blank" class="icon-link" aria-label="GitHub Repository">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Arbor Language -->
+          <article class="project-card" data-category="compiler">
+            <div class="project-banner" style="background: linear-gradient(135deg, #1e1b4b 0%, #312e81 100%); display: flex; align-items: center; justify-content: center; color: #a5b4fc;">
+              <i class="fas fa-file-code" style="font-size: 4rem; opacity: 0.8;"></i>
+              <span class="project-date">March 2026</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Arbor — Java Programming Language Interpreter</h3>
+              <div class="project-subtitle">Lexer, Recursive Descent Parser & AST Tree-Walk Interpreter</div>
+              <p class="project-description">
+                Engineered a complete interpreted programming language in Java featuring hand-written Lexer, Parser, visitor-pattern AST Tree Walker, nested scope resolution, and interactive REPL.
+              </p>
+              <ul class="project-highlights">
+                <li>Supports variables, higher-order functions, closures, and control flow</li>
+                <li>Nested Lexical Scoping Environment with Visitor pattern across 7+ AST nodes</li>
+                <li>CLI (<code style="font-family:var(--font-mono)">arbor run</code>) with 80%+ test coverage using JUnit 5</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Java</span>
+                <span class="tech-badge">Compiler Design</span>
+                <span class="tech-badge">AST Parser</span>
+                <span class="tech-badge">JUnit 5</span>
+                <span class="tech-badge">Maven</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm" data-modal-target="arbor">
+                  <i class="fas fa-info-circle"></i> Details
+                </button>
+                <div class="project-links">
+                  <a href="https://github.com/sars-23/Arbor_0.5" target="_blank" class="icon-link" aria-label="GitHub Repository">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Java Contact Management System -->
+          <article class="project-card" data-category="desktop">
+            <div class="project-banner" style="background: linear-gradient(135deg, #064e3b 0%, #047857 100%); display: flex; align-items: center; justify-content: center; color: #6ee7b7;">
+              <i class="fas fa-address-book" style="font-size: 4rem; opacity: 0.8;"></i>
+              <span class="project-date">Sept 2025</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Java Contact Management System</h3>
+              <div class="project-subtitle">High-Performance Desktop GUI & O(1) Search Engine</div>
+              <p class="project-description">
+                Desktop CRUD application managing 500+ records with an event-driven Java Swing interface, optimized for instantaneous O(1) data retrieval using HashMap data structures.
+              </p>
+              <ul class="project-highlights">
+                <li>HashMap indexing providing up to 10x faster lookup over linear search</li>
+                <li>Modular OOP design with 6+ clean decoupled classes</li>
+                <li>Under 50ms GUI refreshes via DefaultTableModel with input validation</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Java SE</span>
+                <span class="tech-badge">Java Swing</span>
+                <span class="tech-badge">HashMap</span>
+                <span class="tech-badge">OOP</span>
+                <span class="tech-badge">Git</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm" data-modal-target="swing-crud">
+                  <i class="fas fa-info-circle"></i> Details
+                </button>
+                <div class="project-links">
+                  <a href="https://github.com/sars-23/Java_Contact_Management_System" target="_blank" class="icon-link" aria-label="GitHub Repository">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Real-Time Drowsiness Detection -->
+          <article class="project-card" data-category="vision">
+            <div class="project-banner" style="background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%); display: flex; align-items: center; justify-content: center; color: #38bdf8;">
+              <i class="fas fa-eye" style="font-size: 4rem; opacity: 0.85;"></i>
+              <span class="project-date">June 2025</span>
+            </div>
+            <div class="project-body">
+              <h3 class="project-title">Real-Time Drowsiness Detection</h3>
+              <div class="project-subtitle">Webcam Facial Landmark & Ratio Prototype</div>
+              <p class="project-description">
+                Experimental computer-vision prototype using OpenCV and 468 MediaPipe Face Mesh landmarks to calculate Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) for real-time fatigue visual warnings.
+              </p>
+              <ul class="project-highlights">
+                <li>EAR & MAR geometric calculations across eye and mouth landmark coordinates</li>
+                <li>Modular architecture with decoupled calculation engine in geometry.py</li>
+                <li>Configurable runtime sensitivity thresholds and CLI camera index selection</li>
+              </ul>
+              <div class="project-tech-stack">
+                <span class="tech-badge">Python 3.11</span>
+                <span class="tech-badge">OpenCV</span>
+                <span class="tech-badge">MediaPipe</span>
+                <span class="tech-badge">NumPy</span>
+                <span class="tech-badge">CI Workflow</span>
+              </div>
+              <div class="project-footer">
+                <button class="btn btn-outline btn-sm" data-modal-target="drowsiness">
+                  <i class="fas fa-info-circle"></i> Details
+                </button>
+                <div class="project-links">
+                  <a href="https://github.com/sars-23/real-time-drowsiness-detection" target="_blank" class="icon-link" aria-label="GitHub Repository">
+                    <i class="fab fa-github"></i>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </article>
+
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------
+         5. EDUCATION & CERTIFICATIONS SECTION
+         -------------------------------------------------------------------------- -->
+    <section class="section-padding" id="education" style="background: var(--bg-secondary);">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Background & Credentials</span>
+          <h2 class="section-title">Education & Achievements</h2>
+          <p class="section-description">
+            Academic milestones, certifications, competitive programming ranks, and leadership experience.
+          </p>
+        </div>
+
+        <div class="education-container">
+          <div class="timeline">
+
+            <!-- Timeline Item 1: B.Tech -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-title">B.Tech in Computer Science & Engineering</h3>
+                  <span class="timeline-date">2023 – 2027</span>
+                </div>
+                <div class="timeline-subtitle">JECRC University, Jaipur | CGPA: 8.21 / 10</div>
+                <div class="timeline-body">
+                  <p>Focused on core computer science subjects: Advanced Data Structures, Operating Systems, Database Management Systems, Compiler Design, and Software Engineering Principles.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 2: Certifications -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-title">Google Cloud Engineering Certification</h3>
+                  <span class="timeline-date">2024 – 2025</span>
+                </div>
+                <div class="timeline-subtitle">Google Cloud Platform (GCP)</div>
+                <div class="timeline-body">
+                  <p>Completed 5+ hands-on GCP cloud architecture labs covering compute engines, Cloud Storage, IAM policies, and cloud deployment pipelines.</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Timeline Item 3: Leadership Experience -->
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="timeline-header">
+                  <h3 class="timeline-title">Hospitality & Logistics Coordinator</h3>
+                  <span class="timeline-date">March 2025</span>
+                </div>
+                <div class="timeline-subtitle">Jurhythm 2025, JECRC University | Jaipur</div>
+                <div class="timeline-body">
+                  <ul>
+                    <li>Coordinated logistics for 10+ outstation teams (50+ participants) across a 3-day university event; managed 15 volunteers with zero scheduling conflicts.</li>
+                    <li>Established structured escalation protocols adopted by 3 event committees, ensuring smooth operations.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Certifications & Honors Grid -->
+          <div class="cert-awards-grid">
+            <div class="award-card">
+              <div class="award-icon"><i class="fas fa-chess-knight"></i></div>
+              <div class="award-info">
+                <h4>LeetCode Knight Badge</h4>
+                <p>Top 5% of global competitive programmers with consistent contest performance.</p>
+              </div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-icon" style="background: rgba(16, 185, 129, 0.1); color: var(--accent-primary);"><i class="fas fa-award"></i></div>
+              <div class="award-info">
+                <h4>GATE 2026 Qualified</h4>
+                <p>Top percentile score across 8 CS subjects (Algorithms, OS, DBMS, CN, Math) among 1,00,000+ candidates.</p>
+              </div>
+            </div>
+
+            <div class="award-card">
+              <div class="award-icon" style="background: rgba(59, 130, 246, 0.1); color: var(--accent-secondary);"><i class="fas fa-hands-helping"></i></div>
+              <div class="award-info">
+                <h4>Technical Volunteer</h4>
+                <p>2 consecutive years supporting 500+ attendee university events in technical & logistics roles.</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- --------------------------------------------------------------------------
+         6. CONTACT SECTION
+         -------------------------------------------------------------------------- -->
+    <section class="section-padding" id="contact">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag">Get In Touch</span>
+          <h2 class="section-title">Let's Connect & Collaborate</h2>
+          <p class="section-description">
+            Feel free to reach out for backend engineering opportunities, technical discussions, or project collaborations.
+          </p>
+        </div>
+
+        <div class="contact-grid">
+          <!-- Contact Cards -->
+          <div class="contact-info-cards">
+            
+            <div class="contact-card" data-copy="saransh.9822@gmail.com" title="Click to copy email">
+              <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+              <div class="contact-details">
+                <div class="contact-label">Email Address</div>
+                <div class="contact-value">saransh.9822@gmail.com</div>
+              </div>
+              <span class="copy-action"><i class="fas fa-copy"></i> Copy</span>
+            </div>
+
+            <div class="contact-card" data-copy="+918445583953" title="Click to copy phone">
+              <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="contact-details">
+                <div class="contact-label">Phone / WhatsApp</div>
+                <div class="contact-value">+91 8445583953</div>
+              </div>
+              <span class="copy-action"><i class="fas fa-copy"></i> Copy</span>
+            </div>
+
+            <div class="contact-card">
+              <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="contact-details">
+                <div class="contact-label">Current Location</div>
+                <div class="contact-value">Jaipur, Rajasthan, India</div>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; margin-top: 1rem;">
+              <a href="https://linkedin.com" target="_blank" class="btn btn-secondary" style="flex:1;">
+                <i class="fab fa-linkedin"></i> LinkedIn
+              </a>
+              <a href="https://github.com/sars-23" target="_blank" class="btn btn-secondary" style="flex:1;">
+                <i class="fab fa-github"></i> GitHub
+              </a>
+              <a href="https://leetcode.com" target="_blank" class="btn btn-secondary" style="flex:1;">
+                <i class="fas fa-code"></i> LeetCode
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Contact Form -->
+          <div class="contact-form-wrapper">
+            <form id="contact-form" novalidate>
+              <div class="form-group">
+                <label for="contact-name" class="form-label">Your Name</label>
+                <input type="text" id="contact-name" class="form-control" placeholder="e.g. Alex Johnson" required>
+                <span class="form-error">Please enter your name</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-email" class="form-label">Your Email</label>
+                <input type="email" id="contact-email" class="form-control" placeholder="e.g. alex@example.com" required>
+                <span class="form-error">Please enter a valid email</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-subject" class="form-label">Subject</label>
+                <input type="text" id="contact-subject" class="form-control" placeholder="e.g. Backend Developer Role / Collaboration" required>
+                <span class="form-error">Please enter a subject</span>
+              </div>
+
+              <div class="form-group">
+                <label for="contact-message" class="form-label">Message</label>
+                <textarea id="contact-message" class="form-control" placeholder="Write your message here..." required></textarea>
+                <span class="form-error">Message must be at least 10 characters</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                <i class="fas fa-paper-plane"></i> Send Message
+              </button>
+            </form>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==========================================================================
+       FOOTER
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <a href="#home" class="nav-logo">
+        <span class="code-tag">&lt;</span>Saransh.dev<span class="code-tag"> /&gt;</span>
+      </a>
+
+      <div class="footer-socials">
+        <a href="https://github.com/sars-23" target="_blank" class="social-link" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="https://linkedin.com" target="_blank" class="social-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="https://leetcode.com" target="_blank" class="social-link" aria-label="LeetCode"><i class="fas fa-code"></i></a>
+        <a href="mailto:saransh.9822@gmail.com" class="social-link" aria-label="Email"><i class="fas fa-envelope"></i></a>
+      </div>
+
+      <p class="copyright">
+        © 2026 Saransh Singh. Built with HTML5, CSS3, and JavaScript. All rights reserved.
+      </p>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button -->
+  <button id="back-to-top" class="back-to-top" aria-label="Scroll to Top">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- Reusable Modal Container -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      <button id="modal-close" class="modal-close" aria-label="Close Modal"><i class="fas fa-times"></i></button>
+      <div id="modal-body"></div>
+    </div>
+  </div>
+
+  <!-- JavaScript Main Application Script -->
+  <script src="script.js"></script>
+</body>
+</html>
