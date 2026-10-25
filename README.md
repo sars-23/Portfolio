@@ -8,10 +8,10 @@ Live Site: [https://sars-23.github.io/saransh-singh-portfolio/](https://sars-23.
 
 ## Featured Engineering Projects
 
-1. **[Project Apricorn](https://github.com/sars-23/Project-Apricorn_1)** — Developer Growth Platform and coding practice engine built with Java 21, Spring Boot 3.3.5, and Docker sandbox container execution. Features the Solution Journey timeline, deterministic coding insights, and Flyway-managed PostgreSQL persistence.
-2. **[Arbor](https://github.com/sars-23/Arbor_0.5)** — Custom dynamically typed programming language interpreter built in Java with handwritten lexical scanner, recursive-descent parser, AST visitor pattern, first-class lexical closures, and an integrated Swing mini-IDE.
-3. **[Java Contact Management System](https://github.com/sars-23/Java_Contact_Management_System)** — Desktop CRUD application built with Java Swing and LinkedHashMap indexing, providing O(1) contact lookups while preserving insertion order.
-4. **[Real-Time Drowsiness Detection](https://github.com/sars-23/real-time-drowsiness-detection)** — Experimental computer-vision prototype using Python, OpenCV, and 468 MediaPipe facial mesh landmarks to compute Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) for real-time fatigue visual warnings.
+1. **Project Apricorn *(Private Repository)*** — Developer Growth Platform and coding practice engine built with Java 21, Spring Boot 3.3.5, and Docker sandbox container execution. Features the Solution Journey timeline, deterministic coding insights, and Flyway-managed PostgreSQL persistence. Complete architecture specifications and UI screenshots are documented on the live portfolio site.
+2. **Arbor *(Private Repository)*** — Custom dynamically typed programming language interpreter built in Java with handwritten lexical scanner, recursive-descent parser, AST visitor pattern, first-class lexical closures, and an integrated Swing mini-IDE. Grammar rules (EBNF) and execution pipeline are documented on the live portfolio site.
+3. **[Java Contact Management System](https://github.com/sars-23/Java_Contact_Management_System) *(Public Repository)*** — Desktop CRUD application built with Java Swing and LinkedHashMap indexing, providing O(1) contact lookups while preserving insertion order.
+4. **[Real-Time Drowsiness Detection](https://github.com/sars-23/real-time-drowsiness-detection) *(Public Repository)*** — Experimental computer-vision prototype using Python, OpenCV, and 468 MediaPipe facial mesh landmarks to compute Eye Aspect Ratio (EAR) and Mouth Aspect Ratio (MAR) for real-time fatigue visual warnings.
 
 ---
 
@@ -20,6 +20,7 @@ Live Site: [https://sars-23.github.io/saransh-singh-portfolio/](https://sars-23.
 - **Typography:** Modern pairing using `Plus Jakarta Sans` for clean, professional headings and `JetBrains Mono` for code badges and technical metrics.
 - **Theme Engine:** Dynamic Dark / Light theme switcher with local storage persistence and system preference detection.
 - **Interactive Modals:** Detailed architecture modal popups for all four featured projects detailing key engineering accomplishments.
+- **Source Availability Badges:** Clear visual indicators denoting public open-source repositories vs. private codebases with publicly available architecture specifications.
 - **Category Filtering:** Filter projects across Backend & Systems, Compiler Architecture, Desktop Software, and Computer Vision.
 - **Responsive Layout:** Mobile-first, fully responsive design tested across mobile, tablet, and desktop viewports.
 - **Zero-Dependency Static Architecture:** Pure semantic HTML5, Vanilla CSS3, and modern Vanilla JavaScript, optimized for fast loading and native GitHub Pages hosting.

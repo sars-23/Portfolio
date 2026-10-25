@@ -430,6 +430,15 @@ function initModals() {
 }
 
 function renderProjectModal(container, data) {
+  const actionButton = data.isPrivate
+    ? `<div style="display: flex; align-items: center; gap: 0.75rem; background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); padding: 0.85rem 1.25rem; border-radius: var(--radius-sm); color: #fbbf24; font-size: 0.9rem;">
+        <i class="fas fa-lock" style="font-size: 1.1rem;"></i>
+        <span><strong>Private Repository:</strong> Source code is currently hosted in a private repository. Architecture, data models, and specifications are documented above.</span>
+      </div>`
+    : `<a href="${data.github}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+        <i class="fab fa-github"></i> View Public GitHub Repository
+      </a>`;
+
   container.innerHTML = `
     <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">${data.title}</h3>
     <p style="color: var(--accent-primary); font-weight: 600; font-size: 0.95rem; margin-bottom: 1rem;">${data.subtitle} (${data.date})</p>
@@ -439,28 +448,39 @@ function renderProjectModal(container, data) {
       ${data.features.map(f => `<li style="margin-bottom: 0.6rem;">${f}</li>`).join('')}
     </ul>
     <div style="display: flex; gap: 1rem;">
-      <a href="${data.github}" target="_blank" class="btn btn-primary" style="text-decoration:none;">
-        <i class="fab fa-github"></i> View GitHub Repository
-      </a>
+      ${actionButton}
     </div>
   `;
 }
 
 function renderResumeModal(container) {
   container.innerHTML = `
-    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.5rem;">Saransh Singh â€” Resume Summary</h3>
-    <p style="color: var(--accent-primary); font-weight: 600; margin-bottom: 1.5rem;">Building Scalable Backends â€” One Clean API at a Time | GATE 2026 Qualifier</p>
-    <div style="background: var(--bg-tertiary); padding: 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.7;">
-      <p><strong>Education:</strong> B.Tech Computer Science & Engineering (CGPA 8.21/10), JECRC University Jaipur (2023 - 2027)</p>
-      <p style="margin-top:0.5rem;"><strong>Top Skills:</strong> Java (Core/Advanced), Spring Boot, PostgreSQL, Docker, Compiler Design, GCP, Microservices, REST APIs</p>
-      <p style="margin-top:0.5rem;"><strong>Key Honors:</strong> LeetCode Knight (Top 5%), GATE 2026 Qualifier across 8 CS subjects, Google Cloud Engineering Certified</p>
+    <div style="display: flex; gap: 1.25rem; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap;">
+      <img src="assets/images/saransh.jpg" alt="Saransh Singh" style="width: 80px; height: 80px; border-radius: 50%; object-fit: cover; object-position: center 15%; border: 2px solid var(--accent-secondary); box-shadow: var(--shadow-sm);">
+      <div>
+        <h3 style="font-size: 1.6rem; font-weight: 800; color: var(--text-primary); margin-bottom: 0.25rem;">Saransh Singh</h3>
+        <p style="color: var(--accent-primary); font-weight: 600; font-size: 0.95rem;">B.Tech Computer Science &amp; Engineering &bull; JECRC University (2023–2027)</p>
+      </div>
     </div>
+    
+    <div style="background: var(--bg-tertiary); padding: 1.25rem 1.5rem; border-radius: var(--radius-md); margin-bottom: 1.5rem; color: var(--text-secondary); line-height: 1.7; font-size: 0.95rem;">
+      <p><strong>Engineering Focus:</strong> Java 21 LTS, Spring Boot, Compiler &amp; Interpreter Architecture, Docker Sandbox Isolation, Relational Database Modeling (PostgreSQL).</p>
+      <p style="margin-top:0.75rem;"><strong>Core Projects Built:</strong></p>
+      <ul style="padding-left: 1.25rem; margin-top: 0.35rem; list-style: disc;">
+        <li><strong>Arbor Language:</strong> Complete tree-walk interpreter in Java with handwritten lexer, recursive-descent parser, AST visitor pattern, and lexical closures.</li>
+        <li><strong>Project Apricorn:</strong> Docker-isolated online code judge with asynchronous queueing, attempt progression timelines, and deterministic insights.</li>
+        <li><strong>Java Contact Manager:</strong> Desktop Swing CRUD tool using LinkedHashMap for fast in-memory indexing.</li>
+        <li><strong>Drowsiness Detection:</strong> Real-time computer vision prototype using MediaPipe facial mesh landmarks and OpenCV.</li>
+      </ul>
+      <p style="margin-top:0.75rem;"><strong>Academic Foundation:</strong> Data Structures &amp; Algorithms, Operating Systems, Database Management Systems, Compiler Design, Computer Networks.</p>
+    </div>
+
     <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
-      <button onclick="window.print()" class="btn btn-primary">
-        <i class="fas fa-print"></i> Print / Save PDF
-      </button>
-      <a href="mailto:saransh.9822@gmail.com?subject=Portfolio%20Inquiry%20-%20Saransh%20Singh" class="btn btn-secondary">
-        <i class="fas fa-envelope"></i> Hire / Contact Saransh
+      <a href="https://github.com/sars-23" target="_blank" class="btn btn-primary" style="text-decoration:none;">
+        <i class="fab fa-github"></i> View GitHub Profile
+      </a>
+      <a href="mailto:saransh.9822@gmail.com" class="btn btn-secondary" style="text-decoration:none;">
+        <i class="fas fa-envelope"></i> Send Email
       </a>
     </div>
   `;
