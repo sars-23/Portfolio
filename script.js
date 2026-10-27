@@ -58,6 +58,81 @@ document.addEventListener('DOMContentLoaded', () => {
   const modalClose = document.getElementById('modal-close');
 
   const projectData = {
+    'project-amber': {
+      title: 'Amber — Architecture & Digital Signal Processing Pipeline',
+      subtitle: 'Real-Time Acoustic Fingerprinting & Music Recognition Platform (Java 21 / Spring Boot 3 / React 19 / TypeScript 6 / PostgreSQL)',
+      body: `
+        <div style="line-height: 1.7; font-size: 0.95rem; color: var(--text-secondary);">
+          <div style="background: var(--bg-secondary); padding: 1rem 1.25rem; border-radius: 8px; border: 1px solid var(--border-color); margin-bottom: 1.25rem;">
+            <p style="color: var(--text-primary); font-weight: 600; margin-bottom: 0.25rem;">
+              <i class="fas fa-satellite-dish" style="color: var(--accent-emerald); margin-right: 0.5rem;"></i> Live Production Deployment &amp; Open Source
+            </p>
+            <p style="font-size: 0.88rem; margin: 0;">
+              Amber is fully deployed across <strong>Render</strong> (Docker Web Service &amp; Static Site) and <strong>Neon Serverless PostgreSQL</strong>. 100% test coverage with 88 passing backend tests (Maven / JUnit 5) and 14 frontend tests.
+            </p>
+          </div>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">1. Digital Signal Processing (DSP) Pipeline</h4>
+          <p>Instead of relying on third-party audio APIs or numeric libraries, Amber implements its entire audio analysis stack from mathematical first principles in pure Java:</p>
+          <ul style="padding-left: 1.5rem; margin: 0.5rem 0;">
+            <li><strong>Audio Ingestion &amp; Normalization:</strong> Raw audio is decoded via FFmpeg to 11,025 Hz 16-bit linear mono PCM, establishing a 5,512.5 Hz Nyquist frequency tailored to human musical pitch perception.</li>
+            <li><strong>Spectral Framing &amp; FFT:</strong> Applies a periodic Hann window over 1024-sample frames with a 512-sample hop size (50% overlap / ~46.4 ms frames, 10.77 Hz/bin resolution). Computes power spectra using a custom in-place decimation-in-time Radix-2 Cooley–Tukey FFT.</li>
+            <li><strong>Logarithmic Constellation Peaks:</strong> Partitions spectra into 10 logarithmic frequency sub-bands, extracting prominent peaks that surpass an adaptive noise floor (2.0x frame mean) and local time/frequency neighbors.</li>
+            <li><strong>Combinatorial Constellation Hashing:</strong> Anchor peaks pair with forward target zone peaks (dt in [1, 63] frames) into compact 32-bit integer hashes: <code>(f1 &lt;&lt; 15) | (f2 &lt;&lt; 6) | (dt &amp; 0x3F)</code>.</li>
+          </ul>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">2. PostgreSQL Indexing &amp; Offset Histogram Matching</h4>
+          <p>Query hashes are batch-retrieved against indexed fingerprints using PostgreSQL B-tree indices. True audio matches are identified through <strong>time-coherent offset histogram clustering</strong>:</p>
+          <ul style="padding-left: 1.5rem; margin: 0.5rem 0;">
+            <li>Calculates the temporal shift differential: <code>&Delta;t = t_database - t_query</code>.</li>
+            <li>Correct candidate tracks accumulate dense vote clusters in identical time-offset buckets (&le; 100ms tolerance), separating the authentic recording from background noise and hash collisions.</li>
+          </ul>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">3. Real-Time AudioWorklet &amp; WebSocket Architecture</h4>
+          <p>Continuous microphone recognition runs in modern browsers without thread contention:</p>
+          <ul style="padding-left: 1.5rem; margin: 0.5rem 0;">
+            <li><strong>AudioWorklet Downsampling:</strong> A dedicated Web Audio thread downsamples device audio (44.1 kHz / 48 kHz) to 11,025 Hz PCM without dropping UI frames.</li>
+            <li><strong>Binary WebSocket Streaming:</strong> Streams raw 16-bit PCM chunks over WebSockets to a Spring WebSocket handler utilizing a 4-second circular buffer, delivering live interim recognition feedback.</li>
+          </ul>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">4. Application Screenshots</h4>
+          <div class="modal-image-grid">
+            <div>
+              <img src="assets/images/live_microphone_recognition.png" alt="Amber Live Microphone Recognition UI" class="modal-preview-img" loading="lazy">
+              <div class="modal-img-caption">Live Microphone Recognition &amp; Oscilloscope</div>
+            </div>
+            <div>
+              <img src="assets/images/noise_lab_benchmark.png" alt="Amber Noise Lab Benchmark Suite" class="modal-preview-img" loading="lazy">
+              <div class="modal-img-caption">Noise Lab In-Memory Acoustic Benchmark Suite</div>
+            </div>
+            <div>
+              <img src="assets/images/music_library_catalog.png" alt="Amber Reference Music Library Catalog" class="modal-preview-img" loading="lazy">
+              <div class="modal-img-caption">Indexed Music Library &amp; Admin Authorization</div>
+            </div>
+            <div>
+              <img src="assets/images/file_audio_search.png" alt="Amber File Audio Drag-and-Drop Search" class="modal-preview-img" loading="lazy">
+              <div class="modal-img-caption">Audio File Search &amp; Time-Offset Alignment</div>
+            </div>
+          </div>
+
+          <h4 style="color: var(--text-primary); font-size: 1.1rem; margin: 1.25rem 0 0.5rem;">5. Security &amp; Operational Controls</h4>
+          <p>Engineered for safe public deployment: write endpoints (<code>POST /api/v1/songs</code>, <code>DELETE /api/v1/songs/{id}</code>) require constant-time administrative token verification (<code>AMBER_ADMIN_API_KEY</code>) with fail-closed enforcement. Computationally heavy benchmark routes enforce sliding-window rate limits (10 req/min) with bounded LRU memory protection.</p>
+
+          <div style="margin-top: 1.75rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+            <a href="https://amber-frontend-w78m.onrender.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fas fa-external-link-alt"></i> Open Live Demo
+            </a>
+            <a href="https://github.com/sars-23/Amber_Project" target="_blank" rel="noopener noreferrer" class="btn btn-secondary btn-sm">
+              <i class="fab fa-github"></i> View GitHub Repository
+            </a>
+            <button class="btn btn-secondary btn-sm" onclick="document.getElementById('modal-overlay').classList.remove('open')">
+              Close
+            </button>
+          </div>
+        </div>
+      `
+    },
+
     'project-apricorn': {
       title: 'Project Apricorn — Architecture & Technical Specifications',
       subtitle: 'Online Code Judge & Practice Platform (Java / Spring Boot / Docker)',
