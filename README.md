@@ -2,7 +2,7 @@
 
 Official personal portfolio website for **Saransh Singh**, showcasing backend systems, compiler design, object-oriented desktop software, and computer-vision engineering projects.
 
-Live Site: [https://sars-23.github.io/saransh-singh-portfolio/](https://sars-23.github.io/saransh-singh-portfolio/)
+Live Site: [https://sars-23.github.io/Portfolio/](https://sars-23.github.io/Portfolio/)
 
 ---
 
@@ -73,11 +73,11 @@ Open [http://localhost:3000](http://localhost:3000) in your web browser.
 
 To deploy or update GitHub Pages for this repository:
 
-1. Navigate to **Repository Settings** on GitHub (`https://github.com/sars-23/saransh-singh-portfolio/settings/pages`).
+1. Navigate to **Repository Settings** on GitHub (`https://github.com/sars-23/Portfolio/settings/pages`).
 2. Under **Build and deployment** > **Source**, select **Deploy from a branch**.
 3. Under **Branch**, select `main` and the `/ (root)` folder, then click **Save**.
 4. GitHub Pages will automatically publish the website to:
-   `https://sars-23.github.io/saransh-singh-portfolio/`
+   `https://sars-23.github.io/Portfolio/`
 
 ---
 
